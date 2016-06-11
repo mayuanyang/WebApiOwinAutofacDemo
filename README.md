@@ -35,12 +35,12 @@ Setup Autofac container in Startup.cs
 
 Step 3
 Remove the following codes in Startup.cs of method ConfigureAuth(IAppBuilder app)
-            app.CreatePerOwinContext(ApplicationDbContext.Create);
-            app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
+         app.CreatePerOwinContext(ApplicationDbContext.Create);
+         app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
 
 Step 4
 Remove the original code to get ApplicationUserManager
-            var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
+         var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
 Add new code to use Autofac to resolve ApplicationUserManager
-            var userManager = context.OwinContext.GetAutofacLifetimeScope().Resolve<ApplicationUserManager>();
+         var userManager = context.OwinContext.GetAutofacLifetimeScope().Resolve<ApplicationUserManager>();
 
